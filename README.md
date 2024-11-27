@@ -61,4 +61,5 @@ Embora nem todas precisem ser implementadas, quanto mais forem concluídas, melh
 2. crie um banco de dados SQL com `docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test -e MYSQL_DATABASE=test -e MYSQL_USER=test -e MYSQL_PASSWORD=test -d mariadb:5.5`
 3. execute `yarn typeorm migration:run`
 4. abra `http://localhost:3000/posts` e veja uma lista vazia
-5. teste com `curl`, `postman` ou ferramentas semelhantes
+5. execute o comando `yarn start`
+6. teste com `curl`, `postman` ou ferramentas semelhantes
