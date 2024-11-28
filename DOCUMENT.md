@@ -20,7 +20,9 @@ do containerd pois estarei usando um Registry privado para baixar as imagens (us
 Foi configurado para permitir que eu use um load balancer já que estou usando o kind 
 
 ## Helmfile
-Foi necessario usar para configurar e instalar todos os helms-charts para rodar as aplicações  
+Foi necessario usar para configurar e instalar todos os helms-charts para rodar as aplicações.
+1 - helmfile-nginx 
+2 - helmfile-jenkins (necessário dentro do arquivo alterar a flag 'ingress: enabled: true')
 
 ## Manifests 
 1 - setup-hosts.yaml -> usado para configuração de deamonsets
@@ -37,6 +39,7 @@ e é um dos metodos mais dificeis
 ## Sonarqube
 
 ## Gitea
+Usei para repositorio de codigos (api e jenkins-shared)
 
 ## Kaniko
 É usado para executar o build e push sem precisar de acesso ao Docker deamon

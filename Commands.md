@@ -28,7 +28,11 @@
 3 - kubectl apply -f https://name -> instala via manifesto 
 4 - kubectl get ns -> lista os namespaces 
 5 - kubectl get services -n ingress-nginx  -> lista os services do ingress-nginx-controller em que mostra o TYPE LoadBalancer
+6 - kubectl get ingress -n jenkins -> lista o ingress jenkins (validar que a CLASS está nginx)
  
 
 ## Helm 
 1 - helm upgrade --install --namespace ingress-nginx --create-namespace -f values/values.yaml ingress-nginx ingress-nginx/ingress-nginx
+2 - helm list -A -> lista os charts já instalado
+3 - helm search repo ingress-nginx -> visualiza a versão do app e do chart 
+4 - helmfile apply instala os apps que estão no arquivo helmfile.yaml 
