@@ -19,6 +19,8 @@ do containerd pois estarei usando um Registry privado para baixar as imagens (us
 ## Metallb
 Foi configurado para permitir que eu use um load balancer já que estou usando o kind 
 
+## Helmfile
+Foi necessario usar para configurar e instalar todos os helms-charts para rodar as aplicações  
 
 ## Manifests 
 1 - setup-hosts.yaml -> usado para configuração de deamonsets

@@ -27,4 +27,8 @@
 2 - kubectl get cm -n kube-system -> lista os configmaps
 3 - kubectl apply -f https://name -> instala via manifesto 
 4 - kubectl get ns -> lista os namespaces 
+5 - kubectl get services -n ingress-nginx  -> lista os services do ingress-nginx-controller em que mostra o TYPE LoadBalancer
  
+
+## Helm 
+1 - helm upgrade --install --namespace ingress-nginx --create-namespace -f values/values.yaml ingress-nginx ingress-nginx/ingress-nginx
