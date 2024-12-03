@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: node
+    image: node:18
+    command:
+    - sleep
+    args:
+    - infinity
+  - name: sonar-scanner-cli
+    image: sonarsource/sonar-scanner-cli:5.0.1
+    command:
+    - sleep
+    args:
+    - infinity
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    command:
+    - sleep
+    args:
+    - infinity
+    volumeMounts:
+    - name: harbor-credentials
+      mountPath: /kaniko/.docker
+  hostAliases:
+  - ip: "172.20.0.50"
+    hostnames:
+    - "gitea.localhost.com"
+    - "sonarqube.localhost.com"
+    - "harbor.localhost.com"
+  volumes:
+    - name: harbor-credentials
+      secret:
+        secretName: harbor-credentials
+        items:
+          - key: .dockerconfigjson
+            path: config.json

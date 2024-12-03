@@ -6,7 +6,7 @@ const Post_1 = require("./entity/Post");
 const Category_1 = require("./entity/Category");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "mysql",
-    host: "localhost",
+    host: "mariadb.api.svc.cluster.local",
     port: 3306,
     username: "test",
     password: "test",

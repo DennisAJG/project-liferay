@@ -36,3 +36,27 @@
 2 - helm list -A -> lista os charts já instalado
 3 - helm search repo ingress-nginx -> visualiza a versão do app e do chart 
 4 - helmfile apply instala os apps que estão no arquivo helmfile.yaml 
+
+## Sonarqube
+container do qualitygate e sonar-scanner
+docker run \
+--env SONAR_HOST_URL=http://sonarqube.localhost.com \
+--env SONAR_LOGIN="sqa_73db29f64a89fc2635ba53f1ce2742f1348012d7" \
+--env SONAR_SCANNER_OPTS="-Dsonar.projectKey=test" \
+--network kind \
+--volume $(pwd):/usr/src \
+--add-host sonarqube.localhost.com:172.20.0.50 \
+sonarsource/sonar-scanner-cli:5.0.1
+
+## Kaniko 
+comando para executar o Kaniko 
+docker run -it \
+--network kind \
+--entrypoint "" \
+--add-host harbor.localhost.com:172.20.0.50 \
+--volume $(pwd)/app:/app \
+--volume $(pwd)/config.json:/kaniko/.docker/config.json \
+--workdir /app \
+gcr.io/kaniko-project/executor:debug sh
+
+/kaniko/executor --insecure --destination harbor.localhost.com/project-liferay/teste:0.0.1
