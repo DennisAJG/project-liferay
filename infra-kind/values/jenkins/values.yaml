@@ -27,7 +27,7 @@ controller:
   image:
     registry: "docker.io"
     repository: "jenkins/jenkins"
-    # tag: "2.440.1-jdk17"
+    tag: "2.440.3-jdk17"
     tagLabel: jdk17
     pullPolicy: "Always"
   imagePullSecretName:
@@ -252,10 +252,11 @@ controller:
 
   # List of plugins to be install during Jenkins controller start
   installPlugins:
-  - kubernetes:4186.v1d804571d5d4
-  - workflow-aggregator:596.v8c21c963d92d
-  - git:5.2.1
-  - configuration-as-code:1836.vccda_4a_122a_a_e
+    - kubernetes:4186.v1d804571d5d4
+    - workflow-aggregator:596.v8c21c963d92d
+    - git:5.2.1
+    - configuration-as-code:1850.va_a_8c31d3158b_
+    #- configuration-as-code:1903.v004d55388f30
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true
@@ -265,8 +266,6 @@ controller:
 
   # List of plugins to install in addition to those listed in controller.installPlugins
   additionalPlugins:
-    
-
 
 
   # Enable to initialize the Jenkins controller only once on initial installation.
