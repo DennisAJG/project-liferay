@@ -1,31 +1,38 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import {Request, Response} from "express";
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import {AppRoutes} from "./routes";
+import express from "express";
+import { AppDataSource } from "./data-source";
+import { AppRoutes } from "./routes";
 
-// create connection with database
-// note that it's not active database connection
-// TypeORM creates connection pools and uses them for your requests
-createConnection().then(async connection => {
+const app = express();
+app.use(express.json());
 
-    // create express app
-    const app = express();
-    app.use(bodyParser.json());
+// Configura as rotas
+AppRoutes.forEach((route) => {
+  app[route.method as keyof express.Application](
+    route.path,
+    async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+      try {
+        await route.action(req, res);
+      } catch (err) {
+        console.error("Erro ao processar a rota:", route.path, err);
+        next(err);
+      }
+    }
+  );
+});
 
-    // register all application routes
-    AppRoutes.forEach(route => {
-        app[route.method](route.path, (request: Request, response: Response, next: Function) => {
-            route.action(request, response)
-                .then(() => next)
-                .catch(err => next(err));
-        });
+// Inicializa o banco apenas se não estiver em ambiente de teste
+if (process.env.NODE_ENV !== "test") {
+  AppDataSource.initialize()
+  .then(() => {
+    console.log("Conexão com o banco de dados estabelecida");
+    app.listen(3000, () => {
+      console.log("Servidor rodando na porta 3000");
     });
+  })
+  .catch((error) => {
+    console.error("Erro ao conectar ao banco de dados:", error);
+  });
+}
 
-    // run app, now listening on 0.0.0.0 to accept any host
-    app.listen(3000, '0.0.0.0', () => {
-        console.log("Express application is up and running on http://api_test.localhost.com:3000");
-    });
-
-}).catch(error => console.log("TypeORM connection error: ", error));
+export default app;

@@ -29,9 +29,8 @@ typeorm_1.createConnection().then((connection) => __awaiter(void 0, void 0, void
                 .catch(err => next(err));
         });
     });
-    // run app, now listening on 0.0.0.0 to accept any host
-    app.listen(3000, '0.0.0.0', () => {
-        console.log("Express application is up and running on http://api_test.localhost.com:3000");
-    });
+    // run app
+    app.listen(3000);
+    console.log("Express application is up and running on port 3000");
 })).catch(error => console.log("TypeORM connection error: ", error));
 //# sourceMappingURL=index.js.map

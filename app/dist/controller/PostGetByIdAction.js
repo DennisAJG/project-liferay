@@ -1,26 +1,23 @@
-import {Request, Response} from "express";
-import {getManager} from "typeorm";
-import {Post} from "../entity/Post";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.postGetByIdAction = void 0;
+const typeorm_1 = require("typeorm");
+const Post_1 = require("../entity/Post");
 /**
  * Loads post by a given id.
  */
-export async function postGetByIdAction(request: Request, response: Response) {
-
+async function postGetByIdAction(request, response) {
     // get a post repository to perform operations with post
-    const postRepository = getManager().getRepository(Post);
-
+    const postRepository = (0, typeorm_1.getManager)().getRepository(Post_1.Post);
     // load a post by a given post id
     const post = await postRepository.findOneBy({ id: parseInt(request.params.id) });
-
-
     // if post was not found return 404 to the client
     if (!post) {
         response.status(404);
         response.end();
         return;
     }
-
     // return loaded post
     response.send(post);
 }
+exports.postGetByIdAction = postGetByIdAction;

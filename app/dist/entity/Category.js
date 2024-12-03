@@ -11,18 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Category = void 0;
 const typeorm_1 = require("typeorm");
+const Post_1 = require("./Post");
 let Category = class Category {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Category.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => Post_1.Post, (post) => post.categories),
+    __metadata("design:type", Array)
+], Category.prototype, "posts", void 0);
 Category = __decorate([
-    typeorm_1.Entity()
+    (0, typeorm_1.Entity)()
 ], Category);
 exports.Category = Category;
-//# sourceMappingURL=Category.js.map

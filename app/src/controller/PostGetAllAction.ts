@@ -1,18 +1,15 @@
-import {Request, Response} from "express";
-import {getManager} from "typeorm";
-import {Post} from "../entity/Post";
+import { Request, Response } from "express";
+import { AppDataSource } from "../data-source";
+import { Post } from "../entity/Post";
 
-/**
- * Loads all posts from the database.
- */
-export async function postGetAllAction(request: Request, response: Response) {
-
-    // get a post repository to perform operations with post
-    const postRepository = getManager().getRepository(Post);
-
-    // load a post by a given post id
+export const postGetAllAction = async (req: Request, res: Response) => {
+  try {
+    const postRepository = AppDataSource.getRepository(Post);
     const posts = await postRepository.find();
-
-    // return loaded posts
-    response.send(posts);
-}
+    console.log("Posts encontrados:", posts);
+    res.json(posts);
+  } catch (error) {
+    console.error("Erro ao buscar posts:", error);
+    res.status(500).send("Erro ao buscar posts");
+  }
+};
