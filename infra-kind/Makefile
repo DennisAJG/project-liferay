@@ -31,6 +31,7 @@ passwd:
 	@echo "Dedey@30"
 	@echo "ARGOCD:"
 	@echo "kubectl get secret -n argocd argocd-initial-admin-secret -ojson | jq -r '.data.password' | base64 -d"
+	@echo "ivp2ggsVQIZ8r7b7"
 	@echo "Gitea"
 	@echo  "user: gitea_admin"
 	echo "password: r8sA8CPHD9!bt6d "
