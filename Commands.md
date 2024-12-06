@@ -59,4 +59,8 @@ docker run -it \
 --workdir /app \
 gcr.io/kaniko-project/executor:debug sh
 
-/kaniko/executor --insecure --destination harbor.localhost.com/project-liferay/teste:0.0.1
+
+/kaniko/executor \
+--destination harbor.localhost.com/project-liferay/project-liferay:v0.0.1 \
+--insecure \
+--context $(pwd)
