@@ -344,9 +344,12 @@ gitea:
   ## @param gitea.admin.email Email for the Gitea admin user
   admin:
     # existingSecret: gitea-admin-secret
-    existingSecret:
-    username: gitea_admin
-    password: r8sA8CPHD9!bt6d
+    existingSecret: gitea-secret
+    usernameKey: Z2l0ZWFfYWRtaW4=  # Chave no Secret
+    passwordKey: cjhzQThDUEhEOSFidDZk # Chave no Secret
+    
+    ##username: gitea_admin
+    ##password: r8sA8CPHD9!bt6d
     email: "gitea@local.domain"
 
   ## @param gitea.metrics.enabled Enable Gitea metrics
