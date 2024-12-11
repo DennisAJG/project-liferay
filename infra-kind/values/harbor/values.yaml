@@ -343,8 +343,9 @@ logLevel: info
 # or give an existing secret for it
 # key in secret is given via (default to HARBOR_ADMIN_PASSWORD)
 # existingSecretAdminPassword:
-existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
-harborAdminPassword: "Harbor12345"
+existingSecretAdminPassword: "harbor-admin-secret"
+existingSecretAdminPasswordKey: "HARBOR_ADMIN_PASSWORD"
+harborAdminPassword: ""
 
 # The name of the secret which contains key named "ca.crt". Setting this enables the
 # download link on portal to download the CA certificate when the certificate isn't
